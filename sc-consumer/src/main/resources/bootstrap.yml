@@ -1,0 +1,25 @@
+server:
+  port: 8086
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    appname: sc-consumer
+
+spring:
+  application:
+    name: sc-consumer
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: sc-config-server
+#新版配置，否则后面dashboard无法找到hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

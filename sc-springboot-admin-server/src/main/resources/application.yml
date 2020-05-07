@@ -1,0 +1,20 @@
+server:
+  port: 8089
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    appname: sc-springboot-admin-server
+
+spring:
+  application:
+    name: sc-springboot-admin-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: sc-config-server
